@@ -6,8 +6,8 @@ public class Main {
 
        String ret = "";
 
-       for(String x: s.split(" ")){
-           if(x.length() > ret.length()) ret = x;
+       for(int i=s.length(); i>0; i--){
+           ret = ret + s.charAt(i-1);
        }
 
         return ret;
@@ -17,8 +17,12 @@ public class Main {
         Main sol = new Main();
         Scanner in=new Scanner(System.in);
 
-        String input1 = in.nextLine();
-        System.out.println(sol.solution(input1));
+        int cnt = in.nextInt();
+
+        for(int i=0; i<cnt; i++){
+            String tmp = in.next();
+            System.out.println(sol.solution(tmp));
+        }
         return ;
     }
 }
