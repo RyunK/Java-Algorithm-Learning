@@ -1,32 +1,27 @@
+import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public class Main {
 
     public String solution(String s){
 
-       char[] chararr = s.toCharArray();
-       int lt = 0, rt = s.length()-1;
+        char[] arr = s.toCharArray();
+        int idx = 0;
 
-       while (lt<rt) {
-           if(Character.isLetter(chararr[lt]) && Character.isLetter(chararr[rt])) {
-               char tmp = chararr[lt];
-               chararr[lt] = chararr[rt];
-               chararr[rt] = tmp;
-               lt++;
-               rt--;
-           } else if (Character.isLetter(chararr[lt])) {
-               rt --;
-           } else if (Character.isLetter(chararr[rt])) {
-               lt++;
-           }
-           else {
-               lt++;
-               rt--;
-           }
+        while(idx < arr.length){
+            if(arr[idx] != ' '){
+                for(int j=idx+1; j<arr.length; j++){
+                    if(arr[idx] == arr[j]) {
+                        arr[j] = ' ';
+                    }
+                }
+            }
+            idx ++;
+        }
 
-       }
-
-        return String.copyValueOf(chararr);
+        String ret = String.copyValueOf(arr);
+        ret = ret.replace(" ", "");
+        return ret;
     }
 
     public static void main(String[] args){
