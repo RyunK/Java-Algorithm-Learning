@@ -4,25 +4,37 @@ public class Main {
 
     public String solution(String s){
 
-       String ret = "";
+       char[] chararr = s.toCharArray();
+       int lt = 0, rt = s.length()-1;
 
-       for(int i=s.length(); i>0; i--){
-           ret = ret + s.charAt(i-1);
+       while (lt<rt) {
+           if(Character.isLetter(chararr[lt]) && Character.isLetter(chararr[rt])) {
+               char tmp = chararr[lt];
+               chararr[lt] = chararr[rt];
+               chararr[rt] = tmp;
+               lt++;
+               rt--;
+           } else if (Character.isLetter(chararr[lt])) {
+               rt --;
+           } else if (Character.isLetter(chararr[rt])) {
+               lt++;
+           }
+           else {
+               lt++;
+               rt--;
+           }
+
        }
 
-        return ret;
+        return String.copyValueOf(chararr);
     }
 
     public static void main(String[] args){
         Main sol = new Main();
         Scanner in=new Scanner(System.in);
 
-        int cnt = in.nextInt();
-
-        for(int i=0; i<cnt; i++){
-            String tmp = in.next();
-            System.out.println(sol.solution(tmp));
-        }
+        String s = in.next();
+        System.out.println(sol.solution(s));
         return ;
     }
 }
